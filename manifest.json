@@ -9,5 +9,16 @@
   "permissions": ["storage", "tabs"],
   "action": {
     "default_popup": "popup.html"
+  },
+  "browser_action": {
+    "default_icon": "images/browser_action.png",
+    "default_popup": "popup.html"
+ },
+ "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+          "default": "Ctrl+M"
+      }
+    }
   }
 }
