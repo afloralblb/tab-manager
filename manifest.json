@@ -2,22 +2,20 @@
   "name": "tab-manager",
   "description": "Demo Extension to change background color!",
   "version": "1.0",
-  "manifest_version": 3,
+  "manifest_version": 2,
   "background": {
-    "service_worker": "background.js"
+    "scripts": ["background.js"],
+    "persistent": true
   },
-  "permissions": ["storage", "tabs"],
-  "action": {
-    "default_popup": "popup.html"
-  },
+  "permissions": ["storage", "tabs", "declarativeContent", "contextMenus"],
   "browser_action": {
     "default_icon": "images/browser_action.png",
     "default_popup": "popup.html"
- },
- "commands": {
+  },
+  "commands": {
     "_execute_browser_action": {
       "suggested_key": {
-          "default": "Ctrl+M"
+        "default": "Ctrl+M"
       }
     }
   }
