@@ -1,1 +1,3 @@
-chrome.runtime.onInstalled.addListener(() => {});
+chrome.runtime.onInstalled.addListener(() => {
+  console.log("tab-manager启动");
+});

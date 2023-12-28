@@ -1,6 +1,6 @@
 {
   "name": "tab-manager",
-  "description": "Demo Extension to change background color!",
+  "description": "Demo Extension to manage tabs!",
   "version": "1.0",
   "manifest_version": 2,
   "background": {
@@ -10,12 +10,14 @@
   "permissions": ["storage", "tabs", "declarativeContent", "contextMenus"],
   "browser_action": {
     "default_icon": "images/vertical.png",
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_title": "Tab Manager"
   },
   "commands": {
     "_execute_browser_action": {
       "suggested_key": {
-        "default": "Ctrl+M"
+        "default": "Ctrl+Shift+F",
+        "mac": "MacCtrl+Shift+F"
       }
     }
   }
