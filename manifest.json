@@ -9,7 +9,7 @@
   },
   "permissions": ["storage", "tabs", "declarativeContent", "contextMenus"],
   "browser_action": {
-    "default_icon": "images/browser_action.png",
+    "default_icon": "images/vertical.png",
     "default_popup": "popup.html"
   },
   "commands": {

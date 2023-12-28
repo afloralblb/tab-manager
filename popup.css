@@ -18,6 +18,7 @@ body {
   margin-top: 10px;
   border-top: 1px solid #b2b2b2;
   vertical-align: top;
+  border-radius: 10px;
 }
 .window.block {
   border-top: none;
