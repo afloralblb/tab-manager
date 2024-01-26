@@ -1,4 +1,15 @@
-# tab-manager
+# tab-manager chrome extension
 
-快速关闭 tab，快速打开新窗口，特意关闭才会关闭，不然就一直展示此插件
-TODO 从侧面出现，再侧面缩起
+## Features
+
+It looks like this:
+![Image text](images/demo.png)
+
+如果你也是 tab 大王（orz），可以用来管理 tab
+不用切换 chrome window 直接把多余 tab 关闭
+
+## Any Questions
+
+Just leave me a message!
+
+### enjoy!
