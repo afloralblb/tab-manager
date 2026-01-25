@@ -1,0 +1,25 @@
+{
+  "name": "tab-manager",
+  "version": "2.0.0",
+  "description": "Modern Chrome Extension to manage tabs",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "build:full": "npm run build && cp -r images dist/ && cp manifest.json dist/ && cp README_NEW.md dist/README.md",
+    "preview": "vite preview",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.256",
+    "@types/react": "^18.2.47",
+    "@types/react-dom": "^18.2.18",
+    "@vitejs/plugin-react": "^4.2.1",
+    "typescript": "^5.3.3",
+    "vite": "^4.5.0"
+  }
+}
