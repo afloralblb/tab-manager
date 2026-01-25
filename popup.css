@@ -2,7 +2,7 @@
 html {
   -webkit-user-select: none;
   user-select: none;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #ffffff;
   margin: 0;
   padding: 8px;
   font-family:
@@ -23,26 +23,22 @@ body {
   display: inline-block;
   position: relative;
   z-index: 1;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(0, 0, 0, 0.15);
   border-radius: 16px;
   margin: 8px;
   padding: 12px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
 }
 
 .window:hover {
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-  transform: translateY(-2px);
+  border-color: rgba(0, 0, 0, 0.25);
 }
 
 .window.block {
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid rgba(0, 0, 0, 0.15);
   padding-top: 12px;
   margin-top: 8px;
-  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  border-left: 2px solid rgba(0, 0, 0, 0.15);
   padding-left: 12px;
   margin-left: 8px;
   width: auto;
@@ -51,18 +47,17 @@ body {
 .window:first-child {
   padding-top: 12px;
   margin-top: 8px;
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid rgba(0, 0, 0, 0.15);
   padding-left: 12px;
   margin-left: 8px;
-  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  border-left: 2px solid rgba(0, 0, 0, 0.15);
 }
 
 /* Focused window */
 .focused {
-  box-shadow:
-    0 0 0 3px rgba(103, 126, 234, 0.5),
-    0 12px 40px rgba(103, 126, 234, 0.3);
-  border-color: rgba(103, 126, 234, 0.5);
+  border: 2px solid #667eea;
+  border-width: 3px;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
 }
 
 /* Icon buttons */
@@ -307,9 +302,24 @@ input {
 }
 
 .tabItem {
-  width: 420px;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  gap: 4px;
   position: relative;
+  margin-bottom: 4px;
+}
+
+/* tabItem内的元素不使用float */
+.tabItem .icon {
+  float: none;
+}
+
+.tabItem .tab {
+  flex: 1;
+}
+
+.tabItem .windowaction {
+  flex-shrink: 0;
 }
 
 /* 滚动条美化 */
@@ -324,12 +334,12 @@ input {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: rgba(0, 0, 0, 0.3);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #5568d3 0%, #6a3c8f 100%);
+  background: rgba(0, 0, 0, 0.5);
 }
 
 input:focus {
