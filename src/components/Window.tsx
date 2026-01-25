@@ -1,5 +1,5 @@
 import React from "react";
-import { Tab } from "./Tab";
+import { Tab } from "./tab";
 import {
   ChromeWindow,
   ChromeTab,

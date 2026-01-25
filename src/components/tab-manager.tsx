@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { Window } from "./Window";
+import { Window } from "./window";
 import {
   ChromeWindow,
   Layout,
@@ -17,7 +17,6 @@ export const TabManager: React.FC = () => {
   const [filterTabs, setFilterTabs] = useState<boolean>(
     !!localStorage.getItem("filter-tabs"),
   );
-  const [searchLen, setSearchLen] = useState(0);
   const searchBoxRef = useRef<HTMLInputElement>(null);
 
   const updateWindows = useCallback(() => {
@@ -30,19 +29,25 @@ export const TabManager: React.FC = () => {
         });
       });
 
-      // Clean up selection for removed tabs
-      const newSelection = { ...selection };
-      Object.keys(newSelection).forEach((id) => {
-        if (!newTabsById[Number(id)]) {
-          delete newSelection[Number(id)];
-        }
-      });
-
       setWindows(chromeWindows);
       setTabsById(newTabsById);
-      setSelection(newSelection);
+
+      // 清理已关闭标签的选择状态（不依赖外部 selection）
+      setSelection((prevSelection) => {
+        const newSelection = { ...prevSelection };
+        let hasChanges = false;
+
+        Object.keys(newSelection).forEach((id) => {
+          if (!newTabsById[Number(id)]) {
+            delete newSelection[Number(id)];
+            hasChanges = true;
+          }
+        });
+
+        return hasChanges ? newSelection : prevSelection;
+      });
     });
-  }, [selection]);
+  }, []); // 不依赖任何状态，避免循环更新
 
   useEffect(() => {
     updateWindows();
@@ -163,43 +168,27 @@ export const TabManager: React.FC = () => {
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const searchValue = e.target.value || "";
-    const newSearchLen = searchValue.length;
 
-    if (!newSearchLen) {
+    // 如果搜索框为空，清空选择和隐藏状态
+    if (!searchValue) {
       setSelection({});
       setHiddenTabs({});
-      setSearchLen(0);
       return;
     }
 
-    let idList: { [key: number]: boolean };
-    if (!searchLen) {
-      idList = Object.keys(tabsById).reduce(
-        (acc, id) => {
-          acc[Number(id)] = true;
-          return acc;
-        },
-        {} as { [key: number]: boolean },
-      );
-    } else if (searchLen > newSearchLen) {
-      idList = hiddenTabs;
-    } else if (searchLen < newSearchLen) {
-      idList = selection;
-    } else {
-      return;
-    }
-
+    // 每次都从所有标签中搜索，而不是基于上次结果
+    // 这样可以避免逐步搜索时丢失标签的问题
     const newSelection: TabSelection = {};
     const newHiddenTabs: HiddenTabs = {};
 
-    Object.keys(idList).forEach((id) => {
+    // 遍历所有标签页
+    Object.keys(tabsById).forEach((id) => {
       const tab = tabsById[Number(id)];
-      if (
-        tab &&
-        ((tab.title || "") + (tab.url || ""))
-          .toLowerCase()
-          .indexOf(searchValue.toLowerCase()) >= 0
-      ) {
+      const searchText = ((tab.title || "") + (tab.url || "")).toLowerCase();
+      const searchLower = searchValue.toLowerCase();
+
+      // 匹配的标签加入选择，不匹配的标签隐藏
+      if (searchText.indexOf(searchLower) >= 0) {
         newSelection[Number(id)] = true;
       } else {
         newHiddenTabs[Number(id)] = true;
@@ -208,7 +197,6 @@ export const TabManager: React.FC = () => {
 
     setSelection(newSelection);
     setHiddenTabs(newHiddenTabs);
-    setSearchLen(newSearchLen);
   };
 
   const handleCheckEnter = (e: React.KeyboardEvent) => {

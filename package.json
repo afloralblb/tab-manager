@@ -7,6 +7,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "build:full": "npm run build && cp -r images dist/ && cp manifest.json dist/ && cp README_NEW.md dist/README.md",
+    "watch": "vite build --watch",
+    "watch:full": "nodemon --watch src --ext ts,tsx,css --exec 'npm run build:full'",
     "preview": "vite preview",
     "type-check": "tsc --noEmit"
   },
@@ -19,6 +21,7 @@
     "@types/react": "^18.2.47",
     "@types/react-dom": "^18.2.18",
     "@vitejs/plugin-react": "^4.2.1",
+    "nodemon": "^3.0.2",
     "typescript": "^5.3.3",
     "vite": "^4.5.0"
   }
