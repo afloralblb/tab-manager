@@ -100,7 +100,7 @@ body {
 /* 标签页选中状态 */
 .tab.selected {
   border: 2px solid #667eea;
-  background: linear-gradient(135deg, #f0f3ff 0%, #e8ecff 100%);
+  background-color: #f0f3ff;
   box-shadow: 0 4px 12px rgba(103, 126, 234, 0.25);
 }
 
