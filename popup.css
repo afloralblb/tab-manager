@@ -95,7 +95,6 @@ body {
 .icon:hover {
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  border-color: rgba(103, 126, 234, 0.5);
 }
 
 .icon:active {
@@ -156,8 +155,7 @@ body {
 }
 
 .windowaction:hover {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .filter.enabled {
@@ -370,9 +368,10 @@ input::placeholder {
   z-index: 999;
 }
 
-/* 搜索框内的图标不使用float */
-.window.searchbox .icon {
-  float: none;
+/* 搜索框内的所有元素不使用float，使用flex布局 */
+.window.searchbox .icon,
+.window.searchbox .windowaction {
+  float: none !important;
   margin: 0;
 }
 
