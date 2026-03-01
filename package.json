@@ -1,7 +1,7 @@
 {
   "name": "tab-manager",
-  "version": "2.0.0",
-  "description": "Modern Chrome Extension to manage tabs",
+  "version": "0.0.1",
+  "description": "List and manage all open tabs across windows",
   "type": "module",
   "scripts": {
     "dev": "vite",
