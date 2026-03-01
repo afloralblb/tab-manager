@@ -247,6 +247,11 @@ export const TabManager: React.FC = () => {
           ref={searchBoxRef}
         />
         <div
+          className={`icon windowaction filter${filterTabs ? " enabled" : ""}`}
+          title="Filter tabs"
+          onClick={handleToggleFilterMismatchedTabs}
+        />
+        <div
           className="icon windowaction trash"
           title="Delete Tabs"
           onClick={handleDeleteTabs}
@@ -255,11 +260,6 @@ export const TabManager: React.FC = () => {
           className="icon windowaction pin"
           title="Pin Tabs"
           onClick={handlePinTabs}
-        />
-        <div
-          className={`icon windowaction filter${filterTabs ? " enabled" : ""}`}
-          title="Filter tabs"
-          onClick={handleToggleFilterMismatchedTabs}
         />
         <div
           className="icon windowaction new"

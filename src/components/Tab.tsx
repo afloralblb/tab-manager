@@ -99,7 +99,7 @@ export const Tab: React.FC<TabProps> = ({
   };
 
   return (
-    <div className="tabItem">
+    <div className={`tabItem${hidden ? " hidden" : ""}`}>
       <div
         className={`icon tab ${selected ? "selected " : ""}${
           hidden ? "hidden " : ""

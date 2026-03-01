@@ -107,12 +107,16 @@ body {
 
 /* 标签页选中状态 */
 .tab.selected {
-  border: 2px solid #667eea;
-  background-color: #f0f3ff;
-  box-shadow: 0 4px 12px rgba(103, 126, 234, 0.25);
+  border: 2px solid #7ccbdd;
+  background-color: #f0fafd;
+  box-shadow: 0 4px 12px rgba(124, 203, 221, 0.3);
 }
 
 .tab.hidden {
+  display: none;
+}
+
+.tabItem.hidden {
   display: none;
 }
 
@@ -163,8 +167,8 @@ body {
 }
 
 .filter.enabled {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-color: transparent;
+  border-color: #7ccbdd;
+  border-width: 2px;
 }
 
 /* 按钮图标颜色 */
@@ -277,7 +281,7 @@ body {
 
 /* Input styling */
 input {
-  border: 2px solid rgba(103, 126, 234, 0.2);
+  border: 2px solid rgba(124, 203, 221, 0.4);
   border-radius: 12px;
   height: 40px;
   box-sizing: border-box;
@@ -353,9 +357,9 @@ input {
 
 input:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: #7ccbdd;
   box-shadow:
-    0 0 0 4px rgba(103, 126, 234, 0.1),
+    0 0 0 4px rgba(124, 203, 221, 0.2),
     0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
