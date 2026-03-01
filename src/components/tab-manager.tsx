@@ -20,33 +20,46 @@ export const TabManager: React.FC = () => {
   const searchBoxRef = useRef<HTMLInputElement>(null);
 
   const updateWindows = useCallback(() => {
-    chrome.windows.getAll({ populate: true }, (chromeWindows) => {
-      const newTabsById: TabsById = {};
+    chrome.windows.getLastFocused(
+      { windowTypes: ["normal"] },
+      (lastFocused) => {
+        chrome.windows.getAll({ populate: true }, (chromeWindows) => {
+          const newTabsById: TabsById = {};
 
-      chromeWindows.forEach((window) => {
-        window.tabs?.forEach((tab) => {
-          newTabsById[tab.id!] = tab;
+          chromeWindows.forEach((window) => {
+            window.tabs?.forEach((tab) => {
+              newTabsById[tab.id!] = tab;
+            });
+          });
+
+          // popup 打开时会抢占焦点，导致所有窗口 focused=false
+          // 使用 getLastFocused 获取上一个聚焦的普通窗口并手动标记
+          const lastFocusedId = lastFocused?.id;
+          const windowsWithFocus = chromeWindows.map((w) => ({
+            ...w,
+            focused: w.id === lastFocusedId,
+          }));
+
+          setWindows(windowsWithFocus);
+          setTabsById(newTabsById);
+
+          // 清理已关闭标签的选择状态（不依赖外部 selection）
+          setSelection((prevSelection) => {
+            const newSelection = { ...prevSelection };
+            let hasChanges = false;
+
+            Object.keys(newSelection).forEach((id) => {
+              if (!newTabsById[Number(id)]) {
+                delete newSelection[Number(id)];
+                hasChanges = true;
+              }
+            });
+
+            return hasChanges ? newSelection : prevSelection;
+          });
         });
-      });
-
-      setWindows(chromeWindows);
-      setTabsById(newTabsById);
-
-      // 清理已关闭标签的选择状态（不依赖外部 selection）
-      setSelection((prevSelection) => {
-        const newSelection = { ...prevSelection };
-        let hasChanges = false;
-
-        Object.keys(newSelection).forEach((id) => {
-          if (!newTabsById[Number(id)]) {
-            delete newSelection[Number(id)];
-            hasChanges = true;
-          }
-        });
-
-        return hasChanges ? newSelection : prevSelection;
-      });
-    });
+      },
+    );
   }, []); // 不依赖任何状态，避免循环更新
 
   useEffect(() => {
