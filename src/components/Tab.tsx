@@ -28,7 +28,14 @@ export const Tab: React.FC<TabProps> = ({
 
   const resolveFavIconUrl = (): string => {
     if (!tab.url || tab.url.indexOf("chrome://") !== 0) {
-      return tab.favIconUrl ? `url(${tab.favIconUrl})` : "";
+      if (tab.favIconUrl) {
+        return `url(${tab.favIconUrl})`;
+      }
+      // favIconUrl 为空时，用 chrome://favicon2/ 兜底
+      if (tab.url) {
+        return `url(chrome://favicon2/?size=16&scaleFactor=2x&url=${encodeURIComponent(tab.url)}&allowGoogleServerFallback=0)`;
+      }
+      return "";
     } else {
       const favIcons = [
         "bookmarks",
@@ -97,8 +104,8 @@ export const Tab: React.FC<TabProps> = ({
         className={`icon tab ${selected ? "selected " : ""}${
           hidden ? "hidden " : ""
         }${layout === "vertical" ? "full " : ""}${
-          tab.incognito ? "incognito " : ""
-        }${draggingOver}`}
+          tab.active ? "active " : ""
+        }${tab.incognito ? "incognito " : ""}${draggingOver}`}
         style={{
           backgroundImage: resolveFavIconUrl(),
           paddingLeft: layout === "vertical" ? "20px" : "",
