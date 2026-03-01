@@ -7,7 +7,7 @@ npm run build
 # Copy necessary files to dist
 cp -r images dist/
 cp manifest.json dist/
-cp README_NEW.md dist/README.md
+cp README.md dist/README.md
 
 echo "✅ Build complete! Extension is ready in the dist/ directory"
 echo "📦 To install:"

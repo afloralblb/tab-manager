@@ -85,9 +85,7 @@ npm run build:full
 
 ## 📚 更多信息
 
-- 完整文档: [README_NEW.md](README_NEW.md)
-- 迁移说明: [MIGRATION_COMPLETE.md](MIGRATION_COMPLETE.md)
-- 原始README: [README.md](README.md)
+- 完整文档: [README.md](README.md)
 
 ---
 

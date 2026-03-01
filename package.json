@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "build:full": "npm run build && cp -r images dist/ && cp manifest.json dist/ && cp README_NEW.md dist/README.md",
+    "build:full": "npm run build && cp -r images dist/ && cp manifest.json dist/ && cp README.md dist/README.md",
     "watch": "vite build --watch",
     "watch:full": "nodemon --watch src --ext ts,tsx,css --exec 'npm run build:full'",
     "preview": "vite preview",

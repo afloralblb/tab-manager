@@ -19,7 +19,7 @@ while true; do
     # 复制必要的资源文件
     cp -r images dist/ 2>/dev/null
     cp manifest.json dist/ 2>/dev/null
-    cp README_NEW.md dist/README.md 2>/dev/null
+    cp README.md dist/README.md 2>/dev/null
     
     echo "✅ 资源文件已更新 $(date '+%H:%M:%S')"
   fi

@@ -83,7 +83,6 @@ export const Window: React.FC<WindowProps> = ({
     </>
   );
 
-  // Build children array with newliners
   const children: React.ReactNode[] = [];
   for (let j = 0; j < tabElements.length; j++) {
     if (
