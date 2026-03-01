@@ -1,149 +1,58 @@
 # Tab Manager - Chrome Extension
 
-Tab Manager.
+**LESS TAB, HIGHER EFFICIENCY!!**
 
-LESS TAB, HIGHER EFFICIENCY!
+## ✨ Preview
 
-## ✨ 效果预览
+- Click extension icon:
 
-Click extension icon: ![Image text](images/icon.png)
+![icon](images/icon.png)
 
-You will get: ![Image text](images/snapshot.png)
+- You will get:
 
-## 🎯 功能特性
+![screenshot](images/snapshot.png)
 
-- 📑 查看所有窗口的标签页
-- 🔍 搜索过滤标签页
-- 🗑️ 批量删除标签页
-- 📌 固定/取消固定标签页
-- 🪟 将选中的标签页移动到新窗口
-- 🔒 识别隐身模式标签页
+## 📦 How to use
 
-## ⌨️ 快捷键
+1. Clone the repository or download as a ZIP file
+2. Open the directory and run `npm run build:full` to build the extension
+3. Open Chrome and go to `chrome://extensions/`
+4. Enable **Developer mode** in the top right corner
+5. Click **"Load unpacked"**
+6. Select the `dist` folder
 
-- **Ctrl+Shift+F** (Windows/Linux) 或 **MacCtrl+Shift+F** (macOS)：打开标签页管理器
-- **Shift/Ctrl + 点击**：多选标签页
-- **拖拽**：重新排列标签页
-- **中键点击**：关闭标签页
+![screenshot](images/load-unpacked.png)
 
-## 📦 安装扩展
+## 🎯 Features
 
-1. 运行 `npm run build:full` 构建扩展
-2. 打开 Chrome 浏览器，访问 `chrome://extensions/`
-3. 启用右上角的"开发者模式"
-4. 点击"加载已解压的扩展程序"
-5. 选择 `dist` 文件夹
+- 📑 View all tabs across all windows
+- 🔍 Search and filter tabs
+- 🗑️ Bulk delete tabs
+- 📌 Pin / unpin tabs
+- 🪟 Move selected tabs to a new window
 
-## 🚀 开发指南
+## 🚀 Development guide
 
-### 安装依赖
+1. Run `npm install` to install dependencies
+2. Edit the source code in `src/`
+3. Run `npm run build:full` to build the extension
+4. Go to `chrome://extensions/` and click the **🔄 Reload** button on the extension
+5. Reopen the popup to see your changes
 
-\`\`\`bash
-npm install
-\`\`\`
+## 🐛 Common questions
 
-### 常用命令
+**No changes after editing code?**
+Re-run `npm run build:full`, then reload the extension at `chrome://extensions/`.
 
-\`\`\`bash
+**Extension fails to load?**
+Make sure `npm run build:full` has been run and the `dist/` folder exists.
 
-# 开发模式（浏览器预览，带热重载）
+**TypeScript compile errors?**
+Run `npm run type-check` to see the exact error locations.
 
-npm run dev
+**Favicon not showing?**
+Make sure `"favicon"` is listed in the `permissions` field of `manifest.json`.
 
-# 完整构建（含图标、manifest 等资源）
+## 📄 Any question?
 
-npm run build:full
-
-# 仅构建
-
-npm run build
-
-# 监听模式构建
-
-npx vite build --watch
-
-# 类型检查
-
-npm run type-check
-\`\`\`
-
-> **注意：** `npm run dev` 可在 `http://localhost:5173` 预览 UI，但某些 Chrome 扩展 API 无法使用。扩展功能调试需使用 `npm run build:full` 后在 Chrome 中重载。
-
-### 开发工作流
-
-1. 修改 `src/` 中的代码
-2. 运行 `npm run build:full`
-3. 打开 `chrome://extensions/`，点击扩展的 **🔄 重新加载** 按钮
-4. 重新打开 popup 查看效果
-
-## 🔍 调试技巧
-
-### Popup 页面调试
-
-右键点击扩展图标 → **"检查"** 打开开发者工具，可查看控制台日志、React 组件树（需安装 [React DevTools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)）。
-
-### Background Service Worker 调试
-
-1. 访问 `chrome://extensions/`
-2. 点击扩展卡片下的 **"service worker"** 链接查看日志
-
-### TypeScript 类型检查
-
-\`\`\`bash
-npm run type-check
-\`\`\`
-
-常见写法：
-
-\`\`\`typescript
-// ✅ 使用可选链
-if (tab?.id) {
-chrome.tabs.update(tab.id, { active: true });
-}
-\`\`\`
-
-## 🐛 常见问题
-
-**修改代码后没有变化？**
-重新运行 `npm run build:full`，然后在 `chrome://extensions/` 重新加载扩展。
-
-**扩展无法加载？**
-确保已运行 `npm run build:full`，检查 `dist/` 文件夹是否存在。
-
-**TypeScript 编译错误？**
-运行 `npm run type-check` 查看具体错误位置。
-
-**图标不显示？**
-确认 `manifest.json` 中包含 `"favicon"` 权限。
-
-## 📁 项目结构
-
-\`\`\`
-tab-manager/
-├── src/
-│ ├── components/
-│ │ ├── tab.tsx # 单个标签页组件
-│ │ ├── window.tsx # 窗口组件
-│ │ └── tab-manager.tsx # 主管理组件
-│ ├── types.ts # TypeScript 类型定义
-│ ├── background.ts # Service Worker
-│ └── popup.tsx # 入口文件
-├── images/ # 图标资源
-├── manifest.json # 扩展清单（V3）
-├── popup.html # 弹出页面
-├── popup.css # 样式文件
-├── vite.config.ts # Vite 配置
-├── tsconfig.json # TypeScript 配置
-└── package.json # 项目配置
-\`\`\`
-
-## 🔧 技术栈
-
-- **React 18** - 现代 UI 框架
-- **TypeScript 5** - 类型安全
-- **Vite 5** - 快速构建工具
-- **Chrome Extension Manifest V3** - 最新扩展规范
-
-## 📄 许可证
-
-MIT
+Just leave me a message
